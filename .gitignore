@@ -36,6 +36,8 @@
 /web/uploads/
 
 # PHPUnit
+.phpunit
+.phpunit.result.cache
 /app/phpunit.xml
 /phpunit.xml
 
@@ -50,3 +52,10 @@
 
 # Embedded web-server pid file
 /.web-server-pid
+
+# Symphony generated items
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
