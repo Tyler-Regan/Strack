@@ -4,13 +4,17 @@ namespace App\Controller;
 
 use App\Entity\Task;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TaskController extends AbstractController
 {
+    /**
+     * @Route("/todos", name="todo_list")
+     */
     public function listTasks()
     {
-        $repository = $this->getDoctrine()->getRepository(Todo::class);
+        $repository = $this->getDoctrine()->getRepository(Task::class);
 
         $incompleteTasks = $repository->findBy(['status' => 'Incomplete']);
         $completeTasks = $repository->findBy(['status' => 'Complete']);
@@ -25,9 +29,12 @@ class TaskController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/todo/{id}", name="todo_show")
+     */
     public function showTask($id)
     {
-        $todo = $this->getDoctrine()->getRepository(Todo::class)->find($id);
+        $todo = $this->getDoctrine()->getRepository(Task::class)->find($id);
 
         if (!$todo) {
             throw $this->createNotFoundException('There is no task at that id sorry');
@@ -35,6 +42,9 @@ class TaskController extends AbstractController
         return $this->render('todo/show.html.twig', ['todo' => $todo]);
     }
 
+    /**
+     * @Route("/todos/new", name="todo_new")
+     */
     public function createTask(Request $request)
     {
         $todo = new Task();
@@ -56,10 +66,13 @@ class TaskController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/todo/complete/{id}", name="todo_complete")
+     */
     public function updateTask($id)
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $todo = $entityManager->getRepository(Todo::class)->find($id);
+        $todo = $entityManager->getRepository(Task::class)->find($id);
 
         if (!$todo) {
             throw $this->createNotFoundException('There is no task at that id sorry');
