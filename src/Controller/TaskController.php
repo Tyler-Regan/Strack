@@ -8,6 +8,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TaskController extends AbstractController
 {
+    public function listTasks()
+    {
+        $repository = $this->getDoctrine()->getRepository(Todo::class);
+
+        $incompleteTasks = $repository->findBy(['status' => 'Incomplete']);
+        $completeTasks = $repository->findBy(['status' => 'Complete']);
+
+        if (!$incompleteTasks && !$completeTasks) {
+            throw $this->createNotFoundException('No tasks were found sorry');
+        }
+
+        return $this->render('todo/index.html.twig', [
+            'incompleteTasks' => $incompleteTasks,
+            'completeTasks' => $completeTasks
+        ]);
+    }
+
     public function showTask($id)
     {
         $todo = $this->getDoctrine()->getRepository(Todo::class)->find($id);
@@ -44,7 +61,7 @@ class TaskController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $todo = $entityManager->getRepository(Todo::class)->find($id);
 
-        if(!$todo){
+        if (!$todo) {
             throw $this->createNotFoundException('There is no task at that id sorry');
         }
 
