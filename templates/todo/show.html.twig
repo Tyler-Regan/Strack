@@ -1,8 +1,9 @@
+<a href="{{ path('todo_index') }}">Home</a>
+<hr>
+
 <h4>Owner: {{todo.owner}}</h4>
 <h4>Task: {{todo.task}}</h4>
 <h4>Status: {{todo.status}}</h4>
 {% if todo.status =='incomplete' %}
     <a href="{{ path('todo_complete', {id: todo.id}) }}">Complete</a>
 {% endif %}
-<a href="{{ path('todo_new') }}">New Task</a><br>
-<a href="{{ path('todo_index') }}">Home</a>

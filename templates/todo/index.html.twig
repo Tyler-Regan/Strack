@@ -1,2 +1,21 @@
+<h2>All Tasks</h2>
 
+{# Display all tasks in the same list with the complete ones under the incomplete ones#}
+<ul>
+    {% for todo in incompleteTodos %}
+    <li>
+        Task: <a href="{{ path('todo_show', {id: todo.id}) }}">{{ todo.task }}</a><br>
+        Owner: {{todo.owner}}<br>
+        Status: {{todo.status}}<br>
+        <a href="{{ path('todo_complete', {id: todo.id}) }}">Complete Task</a>
+      </li><br>
+    {% endfor %}
 
+    {% for todo in completeTodos %}
+      <li>
+        Task: <a href="{{ path('todo_show', {id: todo.id}) }}">{{ todo.task }}</a><br>
+        Owner: {{todo.owner}}<br>
+        Status: {{todo.status}}
+      </li><br>
+    {% endfor %}
+</ul>
