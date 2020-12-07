@@ -4,3 +4,5 @@
 {% if todo.status =='incomplete' %}
     <a href="{{ path('todo_complete', {id: todo.id}) }}">Complete</a>
 {% endif %}
+<a href="{{ path('todo_new') }}">New Task</a><br>
+<a href="{{ path('todo_index') }}">Home</a>
