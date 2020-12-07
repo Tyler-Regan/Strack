@@ -32,41 +32,41 @@ class Task
     private $status;
 
     // Get all data relating to a task
-    public function getTodoId(): ?int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTodoOwner(): ?string
+    public function getOwner(): ?string
     {
         return $this->owner;
     }
 
-    public function getTodoTask(): ?string
+    public function getTask(): ?string
     {
         return $this->task;
     }
 
-    public function getTodoStatus(): ?string
+    public function getStatus(): ?string
     {
         return $this->status;
     }
 
 
     // Set all data relating to a task
-    public function setTodoOwner(string $owner): self
+    public function setOwner(string $owner): self
     {
         $this->owner = $owner;
         return $this;
     }
 
-    public function setTodoTask(string $task): self
+    public function setTask(string $task): self
     {
         $this->task = $task;
         return $this;
     }
 
-    public function setTodoStatus(string $status): self
+    public function setStatus(string $status): self
     {
         $this->status = $status;
         return $this;
