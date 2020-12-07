@@ -13,8 +13,8 @@ A simple MySQL database called **todo_tasks** will hold the data with 4 columns:
 | 2 | tyler | Write todo list | incomplete |
 | 3 | bella | Draw a bird | complete |
 ## Features
-- [ ] List Tasks
-- [ ] Add Tasks
-- [ ] Complete Tasks
+- [x] List Tasks
+- [x] Add Tasks
+- [x] Complete Tasks
 - [ ] Delete Tasks
 - [ ] Edit Tasks
