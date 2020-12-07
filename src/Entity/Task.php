@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-class todo
+class Task
 {
     private $id;
     private $owner;
