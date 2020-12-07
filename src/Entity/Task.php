@@ -2,11 +2,33 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\TodoRepository")
+ */
 class Task
 {
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $owner;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $task;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $status;
 
     // Get all data relating to a task
