@@ -25,7 +25,7 @@ class TaskController extends AbstractController
         $form = $this->createForm(TodoType::class, $todo);
 
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $task = $form->getData();
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -37,5 +37,20 @@ class TaskController extends AbstractController
         return $this->render('todo/new.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    public function updateTask($id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $todo = $entityManager->getRepository(Todo::class)->find($id);
+
+        if(!$todo){
+            throw $this->createNotFoundException('There is no task at that id sorry');
+        }
+
+        $todo->setStatus('complete');
+        $entityManager->flush();
+
+        return $this->redirectToRoute('todo_index');
     }
 }
